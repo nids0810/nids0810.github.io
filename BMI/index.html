@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html ng-app="calculateBMI">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="assets/style.css">
+		<script type="text/javascript" src="assets/angular.min.js"></script>
+		<script type="text/javascript" src="assets/bmi.js"></script>
+		<title>BMI</title>
+	</head>
+
+	<body>
+		<div id="calculateBMI" ng-controller="BMIcontroller">
+			<section>
+				<h4>BMI</h4>
+				<p>{{bmi}}</p>
+				<p>{{current_msg}}</p>
+			</section>
+			<form>
+				<div>
+					<h4>Height in cms</h4>
+					<input type="number" ng-change="calculate()" ng-model="current_height" value="{{current_height}}" min="0">
+				</div>
+				<div>
+					<h4>Weight in kgs</h4>
+					<input type="number" ng-change="calculate()" ng-model="current_weight" value="{{current_weight}}" min="0">
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,72 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-size: 16px;
+	font-family: sans-serif;
+}
+
+#calculateBMI {
+	width: 70%;
+}
+
+#calculateBMI::after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+#calculateBMI section {
+	width: 50%;
+	text-align: center;
+	background: #eee url(../images/man.png) no-repeat center 5px;
+	background-size: 150px;
+	float: left;
+	padding: 160px 0 15px 0;
+	line-height: 30px;
+}
+
+#calculateBMI section h4 {
+	font-size: 1.2em;
+	color: #666;
+}
+
+#calculateBMI section p {
+	font-size: 1.8em;
+	color: #333;
+	font-weight: bold;
+}
+
+#calculateBMI section p + p {
+	font-weight: normal;
+	font-size: 1em;
+	color: #1922a8;
+}
+
+#calculateBMI form {
+	background-color: #444;
+	color: #fff;
+	width: 50%;
+	text-align: center;
+	float: left;
+    padding: 36px 0;
+    line-height: 43px;
+}
+
+#calculateBMI div + div{
+	margin-top: 20px;
+}
+
+#calculateBMI form h4 {
+	font-size: 1.25em;
+	font-weight: normal;
+}
+
+#calculateBMI form input {
+	width: 150px;
+	padding: 5px;
+	font-weight: bold;
+	outline: none;
+}
