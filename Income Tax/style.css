@@ -65,6 +65,7 @@ body table {
     padding: 10px;
     color: #fff;
     font-size:15px;
+    outline: none;
 }
 
 #salary-structure {
