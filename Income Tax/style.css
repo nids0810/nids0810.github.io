@@ -1,0 +1,165 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'OpenSans-Regular';
+    src: url('OpenSans-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    width: 100%;
+    text-align: center;
+    font-family: 'OpenSans-Regular';
+}
+
+body table {
+    line-height: 40px;
+    margin-top: 20px;
+}
+
+#home_page {
+    background-color: #fefeff;
+    padding: 12.5% 0;
+}
+
+#home_page p {
+    color: #444444;
+    margin-top: 15px;
+}
+
+.submit_btn {
+    margin-top: 25px;
+    background-color: #18aca7;
+    color: #0b3c3a;
+    font-weight: bold;
+    border: 1px solid #179894;
+    font-size: 18px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 10px 85px;
+}
+
+#user-intro {
+    background-color: #555;
+    color: #fff;
+    padding: 17.25% 0;
+}
+
+#user-intro ul {
+    line-height: 60px;
+}
+
+#user-intro ul li {
+    list-style-type: none;
+}
+
+#userName {
+    border: 2px dashed #fff;
+    background-color: transparent;
+    border-radius: 3px;
+    padding: 10px;
+    color: #fff;
+    font-size:15px;
+}
+
+#salary-structure {
+    background-color: #f3f3f3;
+    color: #444444;
+    padding: 9.25% 0;
+}
+
+.sal-structure-table tr td input {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 8px 24px;
+}
+
+.btn1 {
+    padding: 10px 75px;
+}
+
+#hra-calculation {
+    background-color: #fff;
+    color:#444;
+    padding: 12.5% 0;
+}
+
+.btn2 {
+    background-color: #ea5d5a;
+    border: 1px solid #c84f4d;
+    color: #fff;
+    padding: 7px 12px;
+    font-weight: lighter;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+.inp_box {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 8px 24px;    
+}
+
+.btn3 {
+    padding: 10px 55px;
+}
+
+#gross-salary {
+    background-color: #ffec94;
+    padding: 10% 0;
+    color: #333;
+}
+
+.btn4 {
+    padding: 10px 55px;
+}
+
+#non-taxable-income {
+    background-color: #555;
+    color: #fff;
+    padding:3.5% 0;
+}
+
+#non-taxable-income h3 {
+    font-size: 16px;
+}
+
+#non-taxable-income h4 {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.btn5 {
+    padding: 10px 45px;
+}
+
+#non-taxable-income table {
+    text-align: left;
+}
+
+#tax-calculation {
+    padding: 0.5% 0;
+    background-color: #f3f3f3;
+    color: #444;
+}
+
+#tax-calculation p {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#income-tax {
+    background-color: #fff;
+    color: #444;
+    padding:13% 0;
+}
+
+#income-tax h2 {
+    font-size: 16px;
+    font-weight: bold;
+}

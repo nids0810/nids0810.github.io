@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title>Income Tax Calculation</title>
+</head>
+
+<body>
+    <div id="home_page">
+        <img src="piggy.png" alt="savings"/>
+        <p>Do you want to <b>save your tax !</b></p>
+        <button onclick="parent.location='#user-intro'" class="submit_btn">let's go</button>
+    </div>
+
+    <div id="user-intro">
+        <form>
+        <ul>
+            <li>Please enter your name</li>
+            <li><input placeholder="full name" id="userName" required/></li>
+            <li><button onclick="greetUser()" class="submit_btn">got it</button></li>
+        </ul>
+        </form>
+    </div>
+
+    <div id="salary-structure" align="center" style="vertical-align:bottom">
+        <p>Hi <span id="greetUser"></span>, please enter your monthly salary structure below.</p>
+        <form>
+        <table class="sal-structure-table">
+            <tr>
+                <td>Basic Salary :</td>
+                <td><input placeholder="Basic Salary" id="basic" required/></td>
+            </tr>
+            <tr>
+                <td>HRA :</td>
+                <td><input placeholder="HRA" id="hra" required/></td>
+            </tr>
+            <tr>
+                <td>Conveyance Fee :</td>
+                <td><input placeholder="Conveyance Fee" id="conv" required/></td>
+            </tr>
+            <tr>
+                <td>Medical Allowance :</td>
+                <td><input placeholder="Medical Allowance" id="med" required/></td>
+            </tr>
+            <tr>
+                <td>Special Allowance :</td>
+                <td><input placeholder="Special Allowance" id="spl" required/></td>
+            </tr>
+            <tr>
+                <td>Telephone Allowance :</td>
+                <td><input placeholder="Telephone Allowance" id="tele" required/></td>
+            </tr>
+            <tr>
+                <td>PF Deduction :</td>
+                <td><input placeholder="PF Deduction" id="pf" required/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button onclick="parent.location='#hra-calculation'" class="submit_btn btn1">Next >></button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+
+    <div id="hra-calculation" align="center" style="vertical-align:bottom">
+        <p><b>HRA CALCULATION</b></p>
+        <form>
+        <table class="hra-cal-table">
+            <tr>
+                <td style="width: 212px;">Enter your monthly rent :</td>
+                <td><input placeholder="enter rent" id="rent" class="inp_box" required/></td>
+                <td>
+                    <button onclick="calculateHRA()" class="btn2">calculate HRA</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Actual HRA :</td>
+                <td><span id="actHRA"></span></td>
+            </tr>
+            <tr>
+                <td>Rent-10% Basic :</td>
+                <td><span id="renNBasic"></span></td>
+            </tr>
+            <tr>
+                <td>40% of Basic :</td>
+                <td><span id="fpBasic"></span></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Least of Above is exempt</b></td>
+                <td><b><span id="calHRA"></span></b></td>
+            </tr>
+            <tr>
+                <td colspan="2"><em><span id="hraMessage"></span></em></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button onclick="calculateGross()" class="submit_btn btn3">Next Step>></button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+
+    <div id="gross-salary" align="center" style="vertical-align:bottom">
+        <p><b>GROSS INCOME</b></p>
+        <table class="gross-sal-table">
+            <tr>
+                <td style="width:212px;">Basic Salary (A):</td>
+                <td><span id="1"></span></td>
+            </tr>
+            <tr>
+                <td>HRA (B):</td>
+                <td><span id="2"></span></td>
+            </tr>
+            <tr>
+                <td>Conveyance (C):</td>
+                <td><span id="3"></span></td>
+            </tr>
+            <tr>
+                <td>Medical allowance (D):</td>
+                <td><span id="4"></span></td>
+            </tr>
+            <tr>
+                <td>Special allowance (E):</td>
+                <td><span id="5"></span></td>
+            </tr>
+            <tr>
+                <td>Tele allowance (F):</td>
+                <td><span id="6"></span></td>
+            </tr>
+            <tr>
+                <td>PF Amount (G):</td>
+                <td><span id="7"></span></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Gross Income : </b></td>
+                <td><span id="grossInc"></span> <i> (A+B+C+D+E+F)</i></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button onclick="fixedNonTaxableIncome()" class="submit_btn btn4">Next Step>></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="non-taxable-income">
+        <h3>NON TAXABLE INCOME</h3>
+        <div style="width:54%; margin:0px auto;">
+        <h4>Fixed components - : </h4>
+        <table>
+            <tr>
+                <td style="width:212px;">PF :</td>
+                <td><span id="a"></span></td>
+            </tr>
+            <tr>
+                <td>Conveyance :</td>
+                <td><span id="b"></span></td>
+            </tr>
+            <tr>
+                <td>Calculated HRA :</td>
+                <td><span id="c"></span></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Total :</b></td>
+                <td><span id="d"></span></td>
+            </tr>
+        </table>
+
+        <h4>Variable components - : </h4>
+
+        <table class="var-comp">
+            <tr>
+                <td style="width:212px;">Medical :</td>
+                <td><span id="vsa"></span></td>
+                <td>
+                    <button onclick="varMedical()" class="btn2">Update</button>
+                </td>
+                <td><span id="max-medical"></span></td>
+            </tr>
+            <tr>
+                <td>80C Investment :</td>
+                <td><span id="vsb"></span></td>
+                <td>
+                    <button onclick="varInvest()" class="btn2">Update</button>
+                </td>
+                <td><span id="max-investment"></span></td>
+            </tr>
+            <tr>
+                <td>Telephone & Internet :</td>
+                <td><span id="vsc"></span></td>
+                <td>
+                    <button onclick="varTele()" class="btn2">Update</button>
+                </td>
+                <td><span id="max-telephone"></span></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Total :</b></td>
+                <td><span id="vsd"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button onclick="calculateTaxableIncome()" class="submit_btn btn5">Next Step >></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </div>
+
+    <div id="tax-calculation" align="center" style="vertical-align:bottom">
+        <p>TAXABLE EARNINGS</p>
+        <table>
+            <tr>
+                <td  style="width:212px;">Basic Salary :</td>
+                <td><span id="ca1"></span></td>
+            </tr>
+            <tr>
+                <td>Taxable HRA :</td>
+                <td><span id="ca2"></span></td>
+            </tr>
+            <tr>
+                <td>Special Allowance :</td>
+                <td><span id="ca3"></span></td>
+            </tr>
+            <tr>
+                <td>Taxable Telephone :</td>
+                <td><span id="ca4"></span></td>
+            </tr>
+            <tr>
+                <td>Taxable Medical :</td>
+                <td><span id="ca5"></span></td>
+            </tr>
+            <tr>
+                <td>Gross Salary :</td>
+                <td><span id="ca6"></span></td>
+            </tr>
+            <tr>
+                <td><b>Deductables</b></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table style="margin-top:0;">
+                        <tr>
+                            <td></td>
+                            <td style="width:212px;">80 C Investment</td>
+                            <td><span id="da1"></span></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>PF :</td>
+                            <td><span id="da2"></span></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Professional Tax :</td>
+                            <td><span id="da3"></span></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Total Deductables :</b></td>
+                <td><span id="ca7"></span></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Taxable Income :</b></td>
+                <td><span id="ca8"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button onclick="calculateTax()" class="submit_btn btn4">Next Step>></button>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div id="income-tax" align="center" style="vertical-align:bottom">
+        <h2>INCOME TAX</h2>
+        <table>
+            <tr>
+                <td style="width:212px;">Taxable Income :</td>
+                <td style="width:65px;"><span id="it1"></span></td>
+            </tr>
+            <tr>
+                <td>Income Tax Liability :</td>
+                <td><span id="it2"></span></td>
+            </tr>
+            <tr>
+                <td>Educational Cess :</td>
+                <td><span id="it6"></span></td>
+            </tr>
+
+            <tr>
+                <td>Net Income Tax :</td>
+                <td><span id="it5"></span></td>
+            </tr>
+
+            <tr>
+                <td>Rebate :</td>
+                <td><span id="it3"></span></td>
+                <td>
+                    <button onclick="varTaxRebate()" class="btn2">Update</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="3"><hr></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <td>Tax Payable :</td>
+                <td><span id="it7"></span></td>
+            </tr>
+
+        </table>
+    </div>
+
+    <script type="text/javascript">
+        var userName = document.getElementById("userName");
+        var basicSalary = document.getElementById("basic");
+        var hraSalary = document.getElementById("hra");
+        var conSalary = document.getElementById("conv");
+        var medSalary = document.getElementById("med");
+        var splSalary = document.getElementById("spl");
+        var teleSalary = document.getElementById("tele");
+        var pfDeduct = document.getElementById("pf");
+
+        var rentSubmitted = document.getElementById("rent");
+
+        var userName;
+
+        var gBasicSalary = 0;
+        var gHraSalary = 0;
+        var gConSalary = 0;
+        var gMedSalary = 0;
+        var gSplSalary = 0;
+        var gTeleSalary = 0;
+        var gPfDeduct = 0;
+
+        var rent = 0;
+
+        var grossSal = 0;
+        var exemptedHRA = 0;
+
+        var medicalExemption = 0;
+        var investmentExemption = 0;
+        var telephoneExemption = 0;
+
+        var taxableAmount = 0;
+        var profTax = 200;
+        var rebate = 0;
+        var educationalCess = 0;
+        var tax = 0;
+        var netIncomeTax = 0;
+        var payableTax = 0;
+
+
+        function greetUser() {
+            userName = userName.value;
+            document.getElementById("greetUser").innerHTML = userName;
+            document.location.href = '#salary-structure';
+        }
+
+        function calculateHRA() {
+
+            gBasicSalary = basicSalary.value * 12;
+            gHraSalary = hraSalary.value * 12;
+            gConSalary = conSalary.value * 12;
+            gMedSalary = medSalary.value * 12;
+            gSplSalary = splSalary.value * 12;
+            gTeleSalary = teleSalary.value * 12;
+            gPfDeduct = pfDeduct.value * 12;
+
+            var actualHRA = Number(gHraSalary);
+            var renNBasic = Number((rentSubmitted.value * 12) - (0.1 * gBasicSalary));
+            var fpBasic = Number(0.4 * gBasicSalary);
+            var calHRA = Number(Math.min(actualHRA, renNBasic, fpBasic));
+
+            document.getElementById("actHRA").innerHTML = actualHRA;
+            document.getElementById("renNBasic").innerHTML = renNBasic;
+            document.getElementById("fpBasic").innerHTML = fpBasic;
+            document.getElementById("calHRA").innerHTML = calHRA;
+
+            if (actualHRA - calHRA) {
+                document.getElementById("hraMessage").innerHTML = "You can still save Rs " + (actualHRA - calHRA) + " in HRA.";
+            }
+        }
+
+        function calculateGross() {
+            document.getElementById("1").innerHTML = gBasicSalary;
+            document.getElementById("2").innerHTML = gHraSalary;
+            document.getElementById("3").innerHTML = gConSalary;
+            document.getElementById("4").innerHTML = gMedSalary;
+            document.getElementById("5").innerHTML = gSplSalary;
+            document.getElementById("6").innerHTML = gTeleSalary;
+            document.getElementById("7").innerHTML = gPfDeduct;
+
+            grossSal = Number(+gBasicSalary + +gHraSalary + +gConSalary + +gMedSalary + +gSplSalary + +gTeleSalary + +gPfDeduct);
+            document.getElementById("grossInc").innerHTML = grossSal;
+            document.location.href = '#gross-salary';
+        }
+
+        function fixedNonTaxableIncome() {
+            document.getElementById("a").innerHTML = gPfDeduct;
+            document.getElementById("b").innerHTML = gConSalary;
+
+            exemptedHRA = document.getElementById("calHRA").innerHTML;
+            document.getElementById("c").innerHTML = exemptedHRA;
+
+            document.getElementById("d").innerHTML = Number(+gPfDeduct + +gConSalary + +exemptedHRA);
+
+            document.getElementById("vsa").innerHTML = 0;
+            document.getElementById("vsb").innerHTML = 0;
+            document.getElementById("vsc").innerHTML = 0;
+            document.getElementById("vsd").innerHTML = 0;
+
+            document.location.href = '#non-taxable-income';
+        }
+
+        function varNonTaxableIncome() {
+
+            var calMedi = document.getElementById("vsa").innerHTML;
+            var calInvest = document.getElementById("vsb").innerHTML;
+            var calTele = document.getElementById("vsc").innerHTML;
+
+            document.getElementById("vsd").innerHTML = Number(+calMedi + +calInvest + +calTele);
+
+        }
+
+        function varMedical() {
+            medicalExemption = prompt("Enter medical bill", "");
+            document.getElementById("vsa").innerHTML = medicalExemption;
+            document.getElementById("max-medical").innerHTML = "Maximum investment : " + gMedSalary;
+            varNonTaxableIncome();
+        }
+
+        function varInvest() {
+            investmentExemption = prompt("Enter your investments", "");
+            document.getElementById("vsb").innerHTML = investmentExemption;
+            document.getElementById("max-investment").innerHTML = "Maximum investment : " + (150000 - gPfDeduct);
+            varNonTaxableIncome();
+        }
+
+        function varTele() {
+            telephoneExemption = prompt("Enter your telephone bill", "");
+            document.getElementById("vsc").innerHTML = telephoneExemption;
+            document.getElementById("max-telephone").innerHTML = "Maximum investment : " + gTeleSalary;
+            varNonTaxableIncome();
+        }
+
+        function calculateTaxableIncome() {
+
+            var taxableHRA = gHraSalary - exemptedHRA;
+            var taxableTele = gTeleSalary - telephoneExemption;
+            var taxableMed = gMedSalary - medicalExemption;
+            var gProfTax = profTax * 12;
+
+            document.getElementById("ca1").innerHTML = gBasicSalary;
+            document.getElementById("ca2").innerHTML = taxableHRA + " (" + gHraSalary + " - " + exemptedHRA + ")";
+            document.getElementById("ca3").innerHTML = gSplSalary;
+            document.getElementById("ca4").innerHTML = taxableTele + " (" + gTeleSalary + " - " + telephoneExemption + ")";
+            document.getElementById("ca5").innerHTML = taxableMed + " (" + gMedSalary + " - " + medicalExemption + ")";
+
+            var totalGross = Number(+gBasicSalary + +taxableHRA + +gSplSalary + +taxableTele + +taxableMed);
+            document.getElementById("ca6").innerHTML = totalGross;
+
+            document.getElementById("da1").innerHTML = investmentExemption;
+            document.getElementById("da2").innerHTML = gPfDeduct;
+            document.getElementById("da3").innerHTML = gProfTax;
+
+            var totalDeduction = Number(+investmentExemption + +gPfDeduct + +gProfTax);
+            document.getElementById("ca7").innerHTML = totalDeduction;
+
+            taxableAmount = Number(totalGross - totalDeduction);
+            document.getElementById("ca8").innerHTML = taxableAmount;
+            document.location.href = '#tax-calculation';
+        }
+
+        function calculateTax() {
+            document.location.href = '#income-tax';
+            document.getElementById("it1").innerHTML = taxableAmount;
+            document.getElementById("it2").innerHTML = incomeTaxSlab();
+            educationalCess = Math.ceil(.03 * tax);
+            document.getElementById("it6").innerHTML = educationalCess;
+            document.getElementById("it5").innerHTML = IncomeTax();
+            document.getElementById("it3").innerHTML = rebate;
+        }
+
+        function incomeTaxSlab() {
+
+            if(taxableAmount > 1000000){
+                tax = (taxableAmount-1000000)*.3 + 50000 + 25000;
+                return tax;
+            }
+
+            else if(taxableAmount > 500000){
+                tax = (taxableAmount-500000)*.2 + 25000;
+                return tax;
+            }
+
+            else if(taxableAmount > 250000){
+                tax = (taxableAmount-250000)*.1;
+                return tax;
+            }
+
+            else {
+                tax = 0;
+                return tax;
+            }
+
+        }
+
+        function varTaxRebate() {
+            rebate = prompt("Enter your investments", "");
+            document.getElementById("it3").innerHTML = rebate;
+            payableTax = Number(netIncomeTax-rebate);
+
+            if(payableTax<0){
+                document.getElementById("it7").innerHTML = 0;
+            }
+            else {
+                document.getElementById("it7").innerHTML = payableTax;
+            }
+        }
+
+        function IncomeTax() {
+            netIncomeTax = Number((tax+educationalCess)-rebate);
+            return netIncomeTax;
+
+        }
+
+    </script>
+</body>
+</html>
