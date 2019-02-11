@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Lyrics API</title>
+    </head>
+    <body>
+        <input type="text" id="artist" placeholder="enter artist name" required>
+        <input type="text" id="title" placeholder="enter song's title" required>
+        <button id="clickMe">Click Me</button>
+        <button id="reset">Reset</button>
+    <script type="text/javascript">
+	    
+        document.querySelector('#clickMe').addEventListener('click', getLyrics);
+        
+        document.querySelector('#reset').addEventListener('click', resetInput);
+        
+        function getLyrics() {
+            var text = document.createElement('p');
+            document.body.appendChild(text);
+            var paragraph = document.querySelector('p').innerText
+            
+            var artist = document.getElementById("artist").value;
+            var title = document.getElementById("title").value;
+            var url = 'https://api.lyrics.ovh/v1/' + artist + "/" + title;
+            
+            fetch(url)
+            .then(function(response){
+                if(response.ok) {
+                    return response.json();
+                }
+                return Promise.reject('oh, no!');
+            }).then(function(data){
+                 if(paragraph) {
+                        text.innerHTML = "";
+                    } else {
+                        text.innerHTML = data.lyrics;
+                    }
+            }).catch(function(err){
+                if(paragraph) {
+                        text.innerHTML = "";
+                    } else {
+                        text.innerHTML = err + ' result not found';
+                    }
+            });
+        }
+        
+        function resetInput() {
+            document.getElementById("artist").value = "";
+            var title = document.getElementById("title").value = "";
+            var para = document.querySelector('p');
+            if(para !== null) {
+                para.parentNode.removeChild(para);
+            }
+        }
+        
+    </script>   
+    </body>
+</html>
