@@ -15,7 +15,7 @@
 	function getIfscDetails() {
 		var input = document.querySelector('input').value;
 		var url = 'https://ifsc.razorpay.com/' + input;
-		fetch('https://ifsc.razorpay.com/KARB0000001')
+		fetch(url)
 	  	.then(function(res){
 	  	return res.json();
 	  	}).then(function(data){
