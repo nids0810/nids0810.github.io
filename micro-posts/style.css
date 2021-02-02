@@ -1,0 +1,138 @@
+.mainWrapper {
+    width: 50%;
+    margin: 0 auto;
+    font-family: sans-serif;
+}
+#previous, #next {
+    background-color: #eee;
+    color: #666;
+    padding: 3px 5px;
+    cursor: pointer;
+}
+#previous.active, #next.active {
+    background-color: blue;
+    color: #fff;
+}
+#articleTitle {
+    text-transform: uppercase;
+    color: #666;
+    line-height: 25px;
+}
+#articleContent {
+    margin-top: 20px;
+    color: #666;
+    font-size: 15px;
+    line-height: 25px;
+    margin-bottom: 30px;
+    text-align: justify;
+}
+hr {
+    border: none;
+    border-top: 1px solid #eee;
+}
+.wac {
+    position: relative;
+    top: 25px;
+    font-size: 12px;
+    color: #00BFFF;
+    cursor: pointer;
+    height: 0;
+}
+.pullLleft {
+    float: left;
+}
+.pullRight {
+    float: right;
+}
+.clear {
+    clear: both;
+}
+.hide {
+    display: none;
+}
+.show {
+    display: block;
+}
+.disable {
+    pointer-events: none;
+    opacity: 0.4;
+}
+.commentBox {
+    background-color: #eee;
+    margin-bottom: 20px;
+    padding: 20px 5px;
+}
+#commentCount, .leaveAComment, #beTheFirst {
+    color: #555;
+}
+.icon {
+    padding: 0 10px;
+}
+#userName {
+    color: #666;
+    text-transform: capitalize;
+}
+.commentIcons {
+    padding-right: 10px;
+}
+#commentGiven {
+    color: #666;
+    font-size: 15px;
+    background-color: #f9f9f9;
+    padding: 15px 10px;
+    margin-top: 15px;
+    min-height: 40px;
+}
+.copy, .likes, .reply {
+    padding-right: 10px;
+    cursor: pointer;
+}
+.deletepost {
+    cursor: pointer;
+    color: 	#F08080;
+}
+.heart {
+    color: red;
+}
+.copy {
+    color: #00BFFF;
+}
+.copy:active::after {
+    content: 'copied';
+    width: auto;
+    padding: 0px 5px;
+    height: 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    bottom: 20px;
+    position: absolute;
+    left: 2px;
+    border-radius: 3px;
+    font-size: 18px;
+}
+label {
+    font-size: 11px;
+}
+input[type="text"] {
+    height: 27px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: #eee;
+    margin-bottom: 15px;
+}
+textarea {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: #eee;
+    margin-bottom: 15px;
+}
+#addBtn {
+    background-color: #00BFFF;
+    border: 0;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px 25px;
+    border-radius: 3px;
+    cursor: pointer;
+}

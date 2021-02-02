@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Commenting on Blog Post</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" 
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" 
+    crossorigin="anonymous"/>
+</head>
+
+<body>
+    <div class="mainWrapper">
+        <div class="nav">
+            <span id="previous" onclick="prev()" class="fa fa-chevron-left"></span>
+            <span id="next" onclick="next()" class="fa fa-chevron-right active"></span>
+        </div>
+        <div id="mainContainer">
+            <h1 id="articleTitle"></h1>
+            <p id="articleContent"></p>
+            <hr>
+            <div class="wac pullRight" onclick="changeFocus()">Write A Comment</div>
+            <div class="clear"></div>
+            <div class="commentSection">
+                <h3 id="beTheFirst">Be the first one to comment!!</h3>
+                <div id="commentConatiner">
+                </div>
+            </div>
+
+            <div class="leaveAComment">
+                <h3>Leave A Comment</h3>
+                <label>NAME</label><br>
+                <input type="text" onkeyup="checkInput()" id="username"><br>
+                <label>COMMENT</label><br>
+                <textarea rows="8" cols="70" onkeyup="checkInput()" id="usercomment"></textarea><br>
+                <button type="submit" id="addBtn" class="disable" onclick="addComment()">Add Comment</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
