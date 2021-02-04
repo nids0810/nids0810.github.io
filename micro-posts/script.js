@@ -87,63 +87,18 @@ function addComment() {
     } else {
         commentObj.replyto = null;
     }
-    currentPost.comments.push(commentObj);
+    if(Reply.isReply) {
+        var currObjIndex = currentPost.comments.indexOf(Reply.currObj) + 1;
+        currentPost.comments.splice(currObjIndex, 0, commentObj);
+    } else {
+        currentPost.comments.push(commentObj);
+    }
 
     var currPostIndex = posts.indexOf(currentPost);
     posts.splice(currPostIndex, 1, currentPost);
     localStorage.setItem('posts', JSON.stringify(posts));
 
-    var commentConatiner = document.getElementById('commentConatiner');
-    //added comment count
-    if(currentPost.comments.length === 1) {
-        var h3 = document.createElement('h3');
-        h3.setAttribute('id', 'commentCount');
-        commentConatiner.appendChild(h3);
-    }
-    document.getElementById('commentCount').innerHTML = currentPost.comments.length + ' Comment';
-    
-    //added comment box
-    var div = document.createElement('div');
-        div.setAttribute('class', 'commentBox');
-        commentConatiner.appendChild(div);
-        div.innerHTML = '<div>'+
-        '<div class="user">' +
-            '<div class="userDetails pullLleft">' +
-                '<span class="icon fa fa-user-circle"></span>' +
-                '<span id="userName">'+commentObj.username+'</span>' +
-            '</div>' +
-            '<div class="commentIcons pullRight">' +
-            '<span class="reply fa fa-reply"></span>'+
-                '<span class="copy fa fa-clipboard"></span>' +
-                '<span class="likes fa fa-heart"></span>' +
-                '<span class="deletepost fa fa-trash-alt"></span>' +
-            '</div>' +
-            '<div class="clear"></div>' +
-        '</div>' +
-        '<div id="commentGiven">'+ commentObj.userComment +'</div>' +
-    '</div>';
-    if(Reply.isReply){
-        div.querySelector('#commentGiven').innerHTML = 'replied <<< ' + commentObj.userComment;
-        resetReply();
-    }
-
-    div.getElementsByClassName('deletepost')[0].onclick = function() {
-        deletePost(this, commentObj);
-    }
-    div.getElementsByClassName('likes')[0].onclick = function() {
-        likePost(this, commentObj);
-    }
-    div.getElementsByClassName('copy')[0].onclick = function() {
-        copyToClipboard(this, commentObj);
-    }
-    div.getElementsByClassName('reply')[0].onclick = function() {
-        replyTo(this, commentObj);
-    }
-
-    document.getElementById('beTheFirst').classList.add('hide');
-    document.getElementById('username').value = '';
-    document.getElementById('usercomment').value = '';
-    document.getElementById('addBtn').classList.add('disable');
+    showAllComments(currentPost.comments);
 }
 
 function replyTo(ele, obj) {
@@ -252,8 +207,10 @@ function showAllComments(comments) {
             replyTo(this, item);
         }
         if(item.replyto !== undefined && item.replyto !== null){
-            div.querySelector('#commentGiven').innerHTML = 'replied <<< ' + item.userComment;
+            div.querySelector('#commentGiven').innerHTML = '<p class="grey">' + item.replyto.userComment + '</p>' + 
+            '<span class="fa fa-comments"></span>' + item.userComment;
             resetReply();
+            div.classList.add('replybox');
         }
    }
 

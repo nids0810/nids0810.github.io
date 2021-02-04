@@ -58,9 +58,12 @@ hr {
     opacity: 0.4;
 }
 .commentBox {
-    background-color: #eee;
+    background-color: #ccc;
     margin-bottom: 20px;
     padding: 20px 5px;
+}
+.commentBox.replybox {
+    background-color: #eee;
 }
 #commentCount, .leaveAComment, #beTheFirst {
     color: #555;
@@ -81,7 +84,6 @@ hr {
     background-color: #f9f9f9;
     padding: 15px 10px;
     margin-top: 15px;
-    min-height: 40px;
 }
 .copy, .likes, .reply {
     padding-right: 10px;
@@ -135,4 +137,12 @@ textarea {
     padding: 10px 25px;
     border-radius: 3px;
     cursor: pointer;
+}
+.fa-comments {
+    padding-right: 10px;
+}
+.grey {
+    opacity: 0.7;
+    color: cadetblue;
+    font-size: 12px;
 }
